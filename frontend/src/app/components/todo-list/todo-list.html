@@ -1,9 +1,23 @@
 <h2>Todo List</h2>
 
 <ul class="todo-list">
-  <app-todo-item *ngFor="let todo of todos" [todo]="todo"></app-todo-item>
+  <app-todo-item *ngFor="let todo of sortedTodos" [todo]="todo"></app-todo-item>
 </ul>
 
-<p *ngIf="todos.length === 0">
+<p *ngIf="sortedTodos.length === 0">
   No todos yet! Add one above.
 </p>
+<h2>Todo List</h2>
+
+<div class="sort-container">
+  <label for="sort">Sort by:</label>
+  <select id="sort" (change)="onSortChange($event)">
+    <option value="default">Default (Newest First)</option>
+    <option value="priority-desc">Priority (High to Low)</option>
+    <option value="priority-asc">Priority (Low to High)</option>
+    <option value="due-date">Due Date (Soonest First)</option>
+  </select>
+</div>
+<ul class="todo-list">
+  <app-todo-item *ngFor="let todo of sortedTodos" [todo]="todo"></app-todo-item>
+</ul>

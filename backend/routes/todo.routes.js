@@ -1,9 +1,9 @@
 const router = require('express').Router();
-// Import the controller
+
 const todoController = require('../controllers/todo.controller');
 const authMiddleware = require('../middleware/auth.middleware');
 
-// --- MAIN ROUTES ---
+// MAIN ROUTES 
 
 // GET /api/todos/
 // Gets all todos
@@ -16,7 +16,7 @@ router.route('/')
   .post(authMiddleware,todoController.createTodo);
 
 
-// --- ROUTES WITH /:id ---
+//  ROUTES WITH /:id
 
 // PUT /api/todos/:id
 // Updates a specific todo

@@ -1,1 +1,33 @@
-<p>login works!</p>
+<div class="auth-wrapper">
+  
+  <h1 class="auth-title">My Todo Dashboard</h1>
+
+  <main class="auth-box">
+    <h2>Login</h2>
+    <p>Please log in to manage your todos.</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" formControlName="username">
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password">
+      </div>
+
+      <div *ngIf="loginError" class="error">
+        {{ loginError }}
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid">Log In</button>
+    </form>
+
+    <p class="auth-link">
+      Don't have an account? 
+      <a routerLink="/signup">Sign up here</a>
+    </p>
+  </main>
+</div>

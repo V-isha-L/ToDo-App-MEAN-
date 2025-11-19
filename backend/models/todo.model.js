@@ -1,17 +1,16 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// This is our "advanced" schema
 const todoSchema = new Schema({
 user: {
-    type: Schema.Types.ObjectId, // This is how we store a user's ID
+    type: Schema.Types.ObjectId, 
     ref: 'User', // This links it to the 'User' model
     required: true
   },
 
   taskName: {
     type: String,
-    required: true, // taskName is required
+    required: true, 
     trim: true      // Removes whitespace from both ends
   },
   isCompleted: {
@@ -28,7 +27,7 @@ user: {
     default: null // Optional due date
   }
 }, {
-  timestamps: true // Automatically adds `createdAt` and `updatedAt` fields
+  timestamps: true // adds `createdAt` and `updatedAt` fields
 });
 
 const Todo = mongoose.model('Todo', todoSchema);

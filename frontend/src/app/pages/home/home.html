@@ -1,6 +1,58 @@
-<main class="container">
-  <h1>My Advanced Todo App</h1>
+<main class="home-container">
+  <app-navbar></app-navbar> 
   
-  <app-add-todo-form></app-add-todo-form>
-  <app-todo-list></app-todo-list>
+  <section class="cta-section">
+    <a class="cta-card" routerLink="/add-todo">
+      <h3>Add New Todo</h3>
+      <p>Start a new task</p>
+    </a>
+    <a class="cta-card" routerLink="/your-todos">
+      <h3>Your Todos</h3>
+      <p>View your existing tasks</p>
+    </a>
+    <a class="cta-card" routerLink="/today">
+  <h3>Today's Tasks</h3>
+  <p>View all tasks due today</p>
+</a>
+  </section>
+
+  <div class="card-grid">
+  <a class="readymade-card" (click)="onQuickAdd('Morning Routine')">
+    
+    <h4>Morning Routine</h4>
+  </a>
+  <a class="readymade-card" (click)="onQuickAdd('Grocery List')">
+    
+    <h4>Grocery List</h4>
+  </a>
+  <a class="readymade-card" (click)="onQuickAdd('Project Workflow')">
+    
+    <h4>Project Workflow</h4>
+  </a>
+  <a class="readymade-card" (click)="onQuickAdd('Workout Plan')">
+    
+    <h4>Workout Plan</h4>
+  </a>
+  <a class="readymade-card" (click)="onQuickAdd('Reading List')">
+    
+    <h4>Reading List</h4>
+  </a>
+  <a class="readymade-card" (click)="onQuickAdd('Travel Packing List')">
+    
+    <h4>Packing List</h4>
+  </a>
+  <a class="readymade-card" (click)="onQuickAdd('Meeting Agenda')">
+    
+    <h4>Meeting Agenda</h4>
+  </a>
+  <a class="readymade-card" (click)="onQuickAdd('Cleaning Goals')">
+    
+    <h4>Cleaning Goals</h4>
+  </a>
+</div>
+
 </main>
+
+<footer class="footer">
+  <p>&copy; 2025 My Todo App. All rights reserved.</p>
+</footer>

@@ -31,6 +31,12 @@
       id="dueDate" 
       formControlName="dueDate">
   </div>
-
+  
+<div *ngIf="successMessage" class="success">
+    {{ successMessage }}
+  </div>
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
   <button type="submit" [disabled]="todoForm.invalid">Add Todo</button>
 </form>

@@ -14,14 +14,14 @@ const getAllTodos = async (req, res) => {
 
 // --- 2. CREATE NEW TODO ---
 // Creates a todo *linked to the logged-in user*
-const createTodo = async (req, res) => {
+const createTodo = async (req, res) => {g8
   const { taskName, priority, dueDate } = req.body;
   if (!taskName) {
     return res.status(400).json({ message: 'Task name is required' });
   }
 
   const newTodo = new Todo({
-    user: req.user.id, // <-- Add the user ID
+    user: req.user.id,
     taskName,
     priority,
     dueDate
@@ -35,7 +35,7 @@ const createTodo = async (req, res) => {
   }
 };
 
-// --- 3. UPDATE A TODO ---
+//  UPDATE A TODO
 // Finds the todo, checks if it belongs to the user, then updates
 const updateTodo = async (req, res) => {
   try {
@@ -44,7 +44,7 @@ const updateTodo = async (req, res) => {
       return res.status(404).json({ message: 'Todo not found' });
     }
     
-    // --- SECURITY CHECK ---
+    // SECURITY CHECK 
     if (todo.user.toString() !== req.user.id) {
       return res.status(401).json({ message: 'Not authorized' });
     }
@@ -58,7 +58,7 @@ const updateTodo = async (req, res) => {
   }
 };
 
-// --- 4. DELETE A TODO ---
+//DELETE A TODO
 // Finds the todo, checks if it belongs to the user, then deletes
 const deleteTodo = async (req, res) => {
   try {
@@ -67,7 +67,7 @@ const deleteTodo = async (req, res) => {
       return res.status(404).json({ message: 'Todo not found' });
     }
 
-    // --- SECURITY CHECK ---
+    //SECURITY CHECK
     if (todo.user.toString() !== req.user.id) {
       return res.status(401).json({ message: 'Not authorized' });
     }

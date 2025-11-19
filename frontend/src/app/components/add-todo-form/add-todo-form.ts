@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TodoService } from '../../todo'; // Our service
+import { TodoService } from '../../todo'; 
 
 @Component({
   selector: 'app-add-todo-form',
@@ -12,15 +12,18 @@ import { TodoService } from '../../todo'; // Our service
 })
 export class AddTodoForm {
 
-  // 1. Inject the services we need
+  public successMessage: string | null = null;
+  public errorMessage: string | null = null;
+
+  
   private fb = inject(FormBuilder);
   private todoService = inject(TodoService);
 
-  // 2. Create the FormGroup
+  //  Create the FormGroup
   public todoForm: FormGroup;
 
   constructor() {
-    // 3. Define the form's structure and validators
+    // Define the form's structure and validators
     this.todoForm = this.fb.group({
       taskName: ['', Validators.required], // taskName is required
       priority: ['Medium'], // Default value
@@ -28,28 +31,36 @@ export class AddTodoForm {
     });
   }
 
-  // 4. This method runs when the form is submitted
   onSubmit(): void {
+    // Resets MESSAGES on every new submit
+    this.successMessage = null;
+    this.errorMessage = null;
+
     if (this.todoForm.invalid) {
-      console.log('Form is invalid');
-      return; // Don't submit if invalid
+      //  Sets a specific error if the form is invalid
+      this.errorMessage = "Task name is required.";
+      return; 
     }
 
-    console.log('Form data:', this.todoForm.value);
-
-    // 5. Send the form data to our service
     this.todoService.addTodo(this.todoForm.value).subscribe(
       (newTodo) => {
-        console.log('Successfully added new todo:', newTodo);
-        // 6. Reset the form to its default state
+        // SET SUCCESS MESSAGE
+        this.successMessage = 'Todo added successfully!';
         this.todoForm.reset({
           taskName: '',
           priority: 'Medium',
           dueDate: null
         });
+        
+        //  Clear the success message after 3 seconds
+        setTimeout(() => {
+          this.successMessage = null;
+        }, 3000);
       },
       (error) => {
+        // SET ERROR MESSAGE
         console.error('Error adding todo:', error);
+        this.errorMessage = 'Failed to add todo. Please try again.';
       }
     );
   }

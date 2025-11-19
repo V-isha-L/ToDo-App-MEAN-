@@ -1,9 +1,9 @@
 export interface Todo {
-  _id: string; // MongoDB automatically adds this
+  _id: string; 
   taskName: string;
   isCompleted: boolean;
-  priority: 'Low' | 'Medium' | 'High'; // Use TypeScript's literal types
-  dueDate?: Date; // The '?' makes it optional
+  priority: 'Low' | 'Medium' | 'High'; 
+  dueDate?: Date; 
   createdAt: Date;
   updatedAt: Date;
 }

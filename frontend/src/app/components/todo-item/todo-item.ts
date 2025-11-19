@@ -1,25 +1,24 @@
 import { Component, Input, inject } from '@angular/core';
-import { CommonModule } from '@angular/common'; // <-- Import for [class] and *ngIf
+import { CommonModule } from '@angular/common'; 
 import { Todo } from '../../todo.interface';
 import { TodoService } from '../../todo';
 
 @Component({
   selector: 'app-todo-item',
   standalone: true,
-  imports: [CommonModule], // <-- Add CommonModule
+  imports: [CommonModule], 
   templateUrl: './todo-item.html',
   styleUrl: './todo-item.scss'
 })
 export class TodoItemComponent {
   
-  // 1. Inject the service
   private todoService = inject(TodoService);
 
-  // 2. This @Input() decorator allows the parent (todo-list)
+  //  This @Input() decorator allows the parent (todo-list)
   // to pass the 'todo' object in. The '!' means it's required.
   @Input() todo!: Todo;
 
-  // 3. This runs when the user clicks the "Delete" button
+  //  This runs when the user clicks the "Delete" button
   onDelete(): void {
     if (confirm('Are you sure you want to delete this task?')) {
       this.todoService.deleteTodo(this.todo._id).subscribe(
@@ -29,7 +28,7 @@ export class TodoItemComponent {
     }
   }
 
-  // 4. This runs when the user clicks the checkbox
+  //  This runs when the user clicks the checkbox
   onToggleComplete(): void {
     const changes = { isCompleted: !this.todo.isCompleted };
 
